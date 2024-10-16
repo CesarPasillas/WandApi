@@ -16,8 +16,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
 /**
+ * Created for the WandApi project.
  *
- * @author cesarpasillas
+ * @author Cesar "Aran" Pasillas
  */
 public class WandApiFrame extends javax.swing.JFrame {
 

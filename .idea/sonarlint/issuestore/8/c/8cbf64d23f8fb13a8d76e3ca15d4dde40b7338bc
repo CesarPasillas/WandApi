@@ -1,0 +1,95 @@
+
+p
+java:S1604`"(Make this anonymous inner class a lambda(…æ©âÿÿÿÿÿ8ÖÓíº©2J$e518ed12-c6b8-432b-b4a1-5013c90f8af1
+l
+java:S1604"(Make this anonymous inner class a lambda(ÒÓöÜ8×Óíº©2J$765cf03e-ec89-4f5b-86b2-19704e886678
+q
+java:S1604œ"(Make this anonymous inner class a lambda(öŠÃûÿÿÿÿ8×Óíº©2J$46ba614b-e540-4011-b81f-98aef13d9107
+q
+java:S1604›"(Make this anonymous inner class a lambda(¨í¡§úÿÿÿÿ8×Óíº©2J$8d7a7f9f-66bf-4253-8c50-175030722802
+“	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÈ´§8×Óíº©2J$25ddf107-9c8d-4735-8719-191f6087a44e
+r
+java:S3740"/Provide the parametrized type for this generic.(Ù°ùĞ8×Óíº©2J$acd27f87-c632-4600-9ce5-b31fef2e8bdc
+w
+java:S3740$"/Provide the parametrized type for this generic.(öÒ­¿ûÿÿÿÿ8×Óíº©2J$db83e67a-4ace-439a-9cb8-f53be674b521
+	java:S116£"URename this field "Background" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿº¿üÿÿÿÿ8×Óíº©2J$a5e86e52-9df0-4297-a5b1-45f282a2dac2
+—	java:S116¤"TRename this field "Historial" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ¤ã8×Óíº©2J$bac74d16-1f3e-4320-8f4c-91791d74a38d
+¢
+java:S1450£"YRemove the "Background" field and declare it as a local variable in the relevant methods.(ÿº¿üÿÿÿÿ8×Óíº©2J$da3414d2-b612-413a-817f-21209b14ad6d
+œ
+java:S1450¤"XRemove the "Historial" field and declare it as a local variable in the relevant methods.(ğ¤ã8×Óíº©2J$b3242da0-f393-41f1-b3a0-0d2a4cea0571
+
+java:S1450¦"[Remove the "historyLabel" field and declare it as a local variable in the relevant methods.(…•İ8×Óíº©2J$1f04d6a8-75ba-46aa-821c-946f54163ec6
+£
+java:S1450§"ZRemove the "historyList" field and declare it as a local variable in the relevant methods.(Ú×ĞÜûÿÿÿÿ8×Óíº©2J$d8d9d8e6-d126-4007-8517-8440ad675b68
+¤
+java:S1450¨"`Remove the "historyScrollPane" field and declare it as a local variable in the relevant methods.(ÖëÿÚ8×Óíº©2J$cec2d77d-b9c7-43cd-add4-76814e791395
+¨
+java:S1450©"_Remove the "historySeparator" field and declare it as a local variable in the relevant methods.(·½«Æıÿÿÿÿ8ØÓíº©2J$440efdce-5c6b-4f9a-8528-97be3a5cad8d
+›
+java:S1450«"WRemove the "jButton1" field and declare it as a local variable in the relevant methods.(å……¶8ØÓíº©2J$8cc5cfe9-5ba7-4c40-847c-12999a5a214c
+¤
+java:S1450¬"[Remove the "jScrollPane1" field and declare it as a local variable in the relevant methods.(¤á×ÿÿÿÿÿ8ØÓíº©2J$6bf2ba31-9d41-4ec6-a418-32c76e0d0541
+¤
+java:S1450­"[Remove the "jScrollPane2" field and declare it as a local variable in the relevant methods.(ŠÌ«·şÿÿÿÿ8ØÓíº©2J$98e24c81-b8e0-47f5-a5c8-7b8260008c3a
+¤
+java:S1450®"[Remove the "jScrollPane3" field and declare it as a local variable in the relevant methods.(Ò‰êêùÿÿÿÿ8ØÓíº©2J$7d828bd2-443d-4a66-8c59-6a973f4d3288
+¦
+java:S1450¯"]Remove the "jToggleButton1" field and declare it as a local variable in the relevant methods.(ôâçÿÿÿÿÿ8ØÓíº©2J$85607a1b-1943-44ef-b1be-d050f747f2e8
+œ
+java:S1450°"SRemove the "main" field and declare it as a local variable in the relevant methods.(°½™úÿÿÿÿ8ØÓíº©2J$ec8dbd5d-18ef-4237-9504-ecd87e5442b9
+¤
+java:S1450±"[Remove the "requestLabel" field and declare it as a local variable in the relevant methods.(Ä™˜¥ùÿÿÿÿ8ØÓíº©2J$9bd2bdfb-4a43-43f1-9749-74696cfc026c
+ 
+java:S1450²"\Remove the "requestLabel1" field and declare it as a local variable in the relevant methods.(­òÜµ8ØÓíº©2J$a9ed11d7-1605-4110-b044-1930294a0bd6
+ 
+java:S1450³"\Remove the "requestLabel2" field and declare it as a local variable in the relevant methods.(Ù½ÿ÷8ØÓíº©2J$5a4f55fc-226f-406e-9db7-95f730372f87
+§
+java:S1450´"^Remove the "requestTextPane" field and declare it as a local variable in the relevant methods.(ÂÍøúÿÿÿÿ8ØÓíº©2J$b212bd95-e763-4fa6-a65b-777233b15f66
+¤
+java:S1450µ"`Remove the "responseCodeLabel" field and declare it as a local variable in the relevant methods.(£ëÕ²8ØÓíº©2J$9b9729c4-d6d1-4d41-b65b-e64dc2dd3d0b
+¢
+java:S1450·"YRemove the "sendButton" field and declare it as a local variable in the relevant methods.(ãÏé»üÿÿÿÿ8ØÓíº©2J$8077f944-1053-47b9-8fe3-860158afad52
+¢
+java:S1450¸"^Remove the "statusCodeLabel" field and declare it as a local variable in the relevant methods.(ÃÄ—¹8ØÓíº©2J$e39b1bb8-6c84-4fe1-8799-fd04937233aa
+v
+java:S1948"3Make "wandApiController" transient or serializable.(¿¬íû8ØÓíº©2J$1a11bf9b-9c38-4d72-87d7-2d29a80e1c71
+h
+java:S1948"%Make "log" transient or serializable.(Ù°ùĞ8ÙÓíº©2J$7048bf5a-441a-4c01-8c8c-469e76bf6518
+{
+java:S1854°"7Remove this useless assignment to local variable "doc".(èòµ»8ÙÓíº©2J$10ff3196-348b-4e90-8edd-3c5bdbdd1d21
+l
+java:S1481°"(Remove this unused "doc" local variable.(èòµ»8ÙÓíº©2J$509e9712-06ed-400c-96be-0fcf2911ff0c
+{
+java:S1854Û"8Remove this useless assignment to local variable "json".(†Ğ¦]8ÙÓíº©2J$5eb50fb2-2c67-4969-ae45-1f5668dd374f
+‚
+java:S1854Ø">Remove this useless assignment to local variable "beautifier".(Û†Ú8ÙÓíº©2J$2ff6be9d-a596-473e-90e9-5a562c6387b5
+n
+java:S1172Ö"*Remove this unused method parameter "evt".(ºÎÏÏ8ÙÓíº©2J$23d048c4-1466-4538-bfe3-300c48ad6128
+{
+java:S1135×"2Complete the task associated to this TODO comment.(ÜÀ†áûÿÿÿÿ8ÙÓíº©2J$69dcacf1-6734-45ac-9bf3-d0fef9ccfcdd
+s
+java:S1481Ø"/Remove this unused "beautifier" local variable.(Û†Ú8ÙÓíº©2J$49ac820c-97ce-4cae-9cef-3fdc8ff35d82
+l
+java:S1481Û")Remove this unused "json" local variable.(†Ğ¦]8ÙÓíº©2J$dbf8d9c6-7457-4f87-8a60-807535b29d7c
+„	java:S125ô"<This block of commented-out lines of code should be removed.(Îˆ ûÿÿÿÿ8ÙÓíº©2J$b5f30ed1-d1f0-4015-95a5-dc7243e05ab7
+s
+java:S1172÷"*Remove this unused method parameter "evt".(®¡¹¥ıÿÿÿÿ8ÙÓíº©2J$944f45ec-c326-47a0-bf91-a383d77198bd
+{
+java:S1135ø"2Complete the task associated to this TODO comment.(ÜÀ†áûÿÿÿÿ8ÙÓíº©2J$a6d70153-fe66-4cf8-b2fc-b5c97f005307
+n
+java:S1172û"*Remove this unused method parameter "evt".(‚À‡ä8ÙÓíº©2J$67fcb192-40de-4691-bf72-90f23417326c
+{
+java:S1135ü"2Complete the task associated to this TODO comment.(ÜÀ†áûÿÿÿÿ8ÙÓíº©2J$8a4b1c78-65c0-448e-a3f1-c1cc296b9921
+s
+java:S1197‚"*Move the array designators [] to the type.(¡şÏÖøÿÿÿÿ8ÚÓíº©2J$8b6b392a-2dc3-4086-b71a-07b9f592279a
+‰
+java:S2147‘"ECombine this catch with the one at line 271, which has the same body.(¨¦Š½8ÚÓíº©2J$59b1acd4-f74e-4b78-8193-38c9c8ea97f3
+‰
+java:S2147“"ECombine this catch with the one at line 273, which has the same body.(ã€ 8ÚÓíº©2J$2f020411-7e53-4fb8-881c-dca4fb21047a
+ˆ
+java:S2147•"ECombine this catch with the one at line 275, which has the same body.(ñÎ¯%8ÚÓíº©2J$279cecff-4f67-4572-83a6-a61ef83e03bd
+u
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8ÚÓíº©2J$4897963e-f4b1-407e-bafb-e48f19349f82
+z
+java:S1128"2Remove this unused import 'javax.swing.ListModel'.(ğşÃˆıÿÿÿÿ8ÚÓíº©2J$36bf506d-0a46-40c4-9d8b-291b21effc65
