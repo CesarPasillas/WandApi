@@ -36,29 +36,30 @@ public class WandApiFrame extends JFrame {
     private DefaultListModel<String> historyListModel;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JPanel Background;
-    private JPanel Historial;
-    private JTextPane console;
-    private JLabel historyLabel;
-    private JList<String> historyList;
-    private JScrollPane historyScrollPane;
-    private JSeparator historySeparator;
-    private JComboBox<String> httpMethodsComboBox;
-    private JButton jButton1;
-    private JScrollPane jScrollPane1;
-    private JScrollPane jScrollPane2;
-    private JScrollPane jScrollPane3;
-    private JToggleButton jToggleButton1;
-    private JPanel main;
-    private JLabel requestLabel;
-    private JLabel requestLabel1;
-    private JLabel requestLabel2;
-    private JTextPane requestTextPane;
-    private JLabel responseCodeLabel;
-    private JTextPane responseTextPane;
-    private JButton sendButton;
-    private JLabel statusCodeLabel;
-    private JTextField urlTextInput;
+    private javax.swing.JPanel Background;
+    private javax.swing.JPanel Historial;
+    private javax.swing.JTextPane console;
+    private javax.swing.JLabel historyLabel;
+    private javax.swing.JList<String> historyList;
+    private javax.swing.JScrollPane historyScrollPane;
+    private javax.swing.JSeparator historySeparator;
+    private javax.swing.JComboBox<String> httpMethodsComboBox;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JPanel main;
+    private javax.swing.JLabel requestLabel;
+    private javax.swing.JLabel requestLabel1;
+    private javax.swing.JLabel requestLabel2;
+    private javax.swing.JTextPane requestTextPane;
+    private javax.swing.JLabel responseCodeLabel;
+    private javax.swing.JTextPane responseTextPane;
+    private javax.swing.JButton sendButton;
+    private javax.swing.JLabel statusCodeLabel;
+    private javax.swing.JTextField urlTextInput;
     // End of variables declaration//GEN-END:variables
 
     public WandApiFrame(WandApiController wandApiController) {
@@ -75,6 +76,9 @@ public class WandApiFrame extends JFrame {
         loadHistoryList();
         initComponents();
         log = new LogManager("WandApi");
+        //jSplitPane1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, jScrollPane2, jScrollPane3);
+        //jSplitPane1.setComponentZOrder(jScrollPane2, WIDTH);
+        //jSplitPane1.setComponentZOrder(jScrollPane3, WIDTH);
     }
 
     /**
@@ -85,123 +89,128 @@ public class WandApiFrame extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        Background = new JPanel();
-        Historial = new JPanel();
-        historyLabel = new JLabel();
-        historyScrollPane = new JScrollPane();
-        historyList = new JList<>();
-        historySeparator = new JSeparator();
-        jButton1 = new JButton();
-        main = new JPanel();
-        httpMethodsComboBox = new JComboBox<>();
-        urlTextInput = new JTextField();
-        sendButton = new JButton();
-        jScrollPane2 = new JScrollPane();
-        requestTextPane = new JTextPane();
-        statusCodeLabel = new JLabel();
-        responseCodeLabel = new JLabel();
-        jScrollPane3 = new JScrollPane();
-        responseTextPane = new JTextPane();
-        jToggleButton1 = new JToggleButton();
-        jScrollPane1 = new JScrollPane();
-        console = new JTextPane();
-        requestLabel = new JLabel();
-        requestLabel1 = new JLabel();
-        requestLabel2 = new JLabel();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Background = new javax.swing.JPanel();
+        Historial = new javax.swing.JPanel();
+        historyLabel = new javax.swing.JLabel();
+        historyScrollPane = new javax.swing.JScrollPane();
+        historyList = new javax.swing.JList<>();
+        historySeparator = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        main = new javax.swing.JPanel();
+        jSplitPane1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, jScrollPane2, jScrollPane3);
+        httpMethodsComboBox = new javax.swing.JComboBox<>();
+        urlTextInput = new javax.swing.JTextField();
+        sendButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        requestTextPane = new javax.swing.JTextPane();
+        statusCodeLabel = new javax.swing.JLabel();
+        responseCodeLabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        responseTextPane = new javax.swing.JTextPane();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        console = new javax.swing.JTextPane();
+        requestLabel = new javax.swing.JLabel();
+        requestLabel1 = new javax.swing.JLabel();
+        requestLabel2 = new javax.swing.JLabel();
 
-        Background.setBackground(new Color(255, 255, 255));
-        Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Historial.setBackground(new Color(255, 255, 255));
+        Background.setBackground(new java.awt.Color(255, 255, 255));
 
-        historyLabel.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
-        historyLabel.setForeground(new Color(102, 102, 255));
+        Historial.setBackground(new java.awt.Color(255, 255, 255));
+
+        historyLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        historyLabel.setForeground(new java.awt.Color(102, 102, 255));
         historyLabel.setText("History");
 
-        historyList.setBackground(new Color(102, 102, 255));
-        historyList.setForeground(new Color(255, 255, 255));
+        historyList.setBackground(new java.awt.Color(102, 102, 255));
+        historyList.setForeground(new java.awt.Color(255, 255, 255));
         historyList.setModel(historyListModel);
         historyScrollPane.setViewportView(historyList);
 
-        historySeparator.setBackground(new Color(204, 204, 255));
-        historySeparator.setForeground(new Color(204, 204, 255));
+        historySeparator.setBackground(new java.awt.Color(204, 204, 255));
+        historySeparator.setForeground(new java.awt.Color(204, 204, 255));
 
-        jButton1.setBackground(new Color(102, 102, 255));
-        jButton1.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton1.setForeground(new Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(102, 102, 255));
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Clear History");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        GroupLayout historialLayout = new GroupLayout(Historial);
-        Historial.setLayout(historialLayout);
-        historialLayout.setHorizontalGroup(
-            historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(historialLayout.createSequentialGroup()
+        javax.swing.GroupLayout HistorialLayout = new javax.swing.GroupLayout(Historial);
+        Historial.setLayout(HistorialLayout);
+        HistorialLayout.setHorizontalGroup(
+            HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HistorialLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(historySeparator)
-                    .addGroup(historialLayout.createSequentialGroup()
-                        .addGroup(historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addGroup(historialLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addGroup(HistorialLayout.createSequentialGroup()
+                        .addGroup(HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton1)
-                                .addComponent(historyScrollPane, GroupLayout.PREFERRED_SIZE, 332, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(historyLabel, GroupLayout.PREFERRED_SIZE, 319, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(historyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(historyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        historialLayout.setVerticalGroup(
-            historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(historialLayout.createSequentialGroup()
+        HistorialLayout.setVerticalGroup(
+            HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HistorialLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(historyLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(historySeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(historyScrollPane, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historySeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(12, 12, 12))
         );
 
-        Background.add(Historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 340, 740));
+        main.setBackground(new java.awt.Color(204, 204, 255));
 
-        main.setBackground(new Color(204, 204, 255));
-        main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        httpMethodsComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "GET", "POST", "DELETE", "PUT", "PATCH" }));
+        httpMethodsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GET", "POST", "DELETE", "PUT", "PATCH" }));
         httpMethodsComboBox.setToolTipText("Http Method");
-        httpMethodsComboBox.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        httpMethodsComboBox.addActionListener(this::httpMethodsComboBoxActionPerformed);
-        main.add(httpMethodsComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 30));
+        httpMethodsComboBox.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        httpMethodsComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                httpMethodsComboBoxActionPerformed(evt);
+            }
+        });
 
         urlTextInput.setText("https://api.thecatapi.com/v1/images/search");
         urlTextInput.setToolTipText("");
-        main.add(urlTextInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 520, 30));
 
-        sendButton.setBackground(new Color(102, 102, 255));
-        sendButton.setForeground(new Color(255, 255, 255));
+        sendButton.setBackground(new java.awt.Color(102, 102, 255));
+        sendButton.setForeground(new java.awt.Color(255, 255, 255));
         sendButton.setText("Send");
         sendButton.setToolTipText("Button to send the request");
-        sendButton.addActionListener(this::sendButtonActionPerformed);
-        main.add(sendButton, new AbsoluteConstraints(610, 40, 90, 30));
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(requestTextPane);
 
-        main.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 690, 240));
-
         statusCodeLabel.setText("Status Code:");
-        main.add(statusCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, -1));
 
-        responseCodeLabel.setForeground(new Color(0, 153, 51));
+        responseCodeLabel.setForeground(new java.awt.Color(0, 153, 51));
         responseCodeLabel.setText("200");
-        main.add(responseCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, -1, -1));
 
         responseTextPane.setEditable(false);
-        responseTextPane.setBackground(new Color(255, 255, 255));
-
+        responseTextPane.setBackground(new java.awt.Color(255, 255, 255));
+        StyledDocument doc = responseTextPane.getStyledDocument();
 
         // Create key and value styles
         Style keyStyle = responseTextPane.addStyle("KeyStyle", null);
@@ -211,30 +220,113 @@ public class WandApiFrame extends JFrame {
         StyleConstants.setForeground(valueStyle, Color.GREEN);
         jScrollPane3.setViewportView(responseTextPane);
 
-        main.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 690, 220));
-
         jToggleButton1.setText("Activate Beautify");
         jToggleButton1.setToolTipText("Activates the JSON Beautification");
-        main.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         console.setEditable(false);
-        console.setBackground(new Color(255, 255, 255));
+        console.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(console);
 
-        main.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 690, 100));
-
         requestLabel.setText("Output:");
-        main.add(requestLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 610, -1, -1));
 
         requestLabel1.setText("Request:");
-        main.add(requestLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         requestLabel2.setText("Response:");
-        main.add(requestLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
-        Background.add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 6, 720, 750));
+        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
+        main.setLayout(mainLayout);
+        mainLayout.setHorizontalGroup(
+            mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainLayout.createSequentialGroup()
+                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainLayout.createSequentialGroup()
+                                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(436, 436, 436)
+                                .addComponent(jToggleButton1)
+                                .addGap(11, 11, 11)
+                                .addComponent(statusCodeLabel)
+                                .addGap(4, 4, 4)
+                                .addComponent(responseCodeLabel))
+                            .addComponent(requestLabel2)
+                            .addComponent(requestLabel)
+                            .addComponent(requestLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(mainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(mainLayout.createSequentialGroup()
+                                .addComponent(httpMethodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addComponent(urlTextInput)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1))))
+                .addContainerGap())
+        );
+        mainLayout.setVerticalGroup(
+            mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(httpMethodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(urlTextInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButton1)
+                    .addComponent(statusCodeLabel)
+                    .addComponent(responseCodeLabel)
+                    .addGroup(mainLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(requestLabel1)
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(requestLabel2)
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(requestLabel)
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 750));
+        javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
+        Background.setLayout(BackgroundLayout);
+        BackgroundLayout.setHorizontalGroup(
+            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addComponent(Historial, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        BackgroundLayout.setVerticalGroup(
+            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Historial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
