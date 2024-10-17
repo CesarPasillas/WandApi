@@ -4,6 +4,9 @@
  */
 package com.magonono.wandapi.log;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDateTime;
 
 /**
@@ -12,7 +15,7 @@ import java.time.LocalDateTime;
  */
 public class LogManager<T> {
     
-    private String logClass;
+    private final String logClass;
     
     public LogManager(Class<T> aClass){
         

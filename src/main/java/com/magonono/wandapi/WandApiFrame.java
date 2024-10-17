@@ -9,23 +9,64 @@ import com.magonono.wandapi.log.LogManager;
 import com.magonono.wandapi.view.Beautifier;
 import javax.swing.text.*;
 import java.awt.*;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
+import javax.swing.*;
+import java.awt.event.*;
+import org.netbeans.lib.awtextra.*;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+
 
 /**
  * Created for the WandApi project.
  *
  * @author Cesar "Aran" Pasillas
  */
-public class WandApiFrame extends javax.swing.JFrame {
+@SpringBootApplication
+public class WandApiFrame extends JFrame {
 
-    WandApiController wandApiController = new WandApiController();
+
+    private WandApiController wandApiController;
     
-    LogManager log;
-    DefaultListModel<String> historyListModel;
+    private transient LogManager<WandApiFrame> log;
+
+    private DefaultListModel<String> historyListModel;
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JPanel Background;
+    private JPanel Historial;
+    private JTextPane console;
+    private JLabel historyLabel;
+    private JList<String> historyList;
+    private JScrollPane historyScrollPane;
+    private JSeparator historySeparator;
+    private JComboBox<String> httpMethodsComboBox;
+    private JButton jButton1;
+    private JScrollPane jScrollPane1;
+    private JScrollPane jScrollPane2;
+    private JScrollPane jScrollPane3;
+    private JToggleButton jToggleButton1;
+    private JPanel main;
+    private JLabel requestLabel;
+    private JLabel requestLabel1;
+    private JLabel requestLabel2;
+    private JTextPane requestTextPane;
+    private JLabel responseCodeLabel;
+    private JTextPane responseTextPane;
+    private JButton sendButton;
+    private JLabel statusCodeLabel;
+    private JTextField urlTextInput;
+    // End of variables declaration//GEN-END:variables
+
+    public WandApiFrame(WandApiController wandApiController) {
+        this.wandApiController = wandApiController;
+        loadHistoryList();
+        initComponents();
+        log = new LogManager("WandApi");
+    }
 
     /**
      * Creates new form WandApiFrame
@@ -44,121 +85,108 @@ public class WandApiFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        Background = new JPanel();
+        Historial = new JPanel();
+        historyLabel = new JLabel();
+        historyScrollPane = new JScrollPane();
+        historyList = new JList<>();
+        historySeparator = new JSeparator();
+        jButton1 = new JButton();
+        main = new JPanel();
+        httpMethodsComboBox = new JComboBox<>();
+        urlTextInput = new JTextField();
+        sendButton = new JButton();
+        jScrollPane2 = new JScrollPane();
+        requestTextPane = new JTextPane();
+        statusCodeLabel = new JLabel();
+        responseCodeLabel = new JLabel();
+        jScrollPane3 = new JScrollPane();
+        responseTextPane = new JTextPane();
+        jToggleButton1 = new JToggleButton();
+        jScrollPane1 = new JScrollPane();
+        console = new JTextPane();
+        requestLabel = new JLabel();
+        requestLabel1 = new JLabel();
+        requestLabel2 = new JLabel();
 
-        Background = new javax.swing.JPanel();
-        Historial = new javax.swing.JPanel();
-        historyLabel = new javax.swing.JLabel();
-        historyScrollPane = new javax.swing.JScrollPane();
-        historyList = new javax.swing.JList<>();
-        historySeparator = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        main = new javax.swing.JPanel();
-        httpMethodsComboBox = new javax.swing.JComboBox<>();
-        urlTextInput = new javax.swing.JTextField();
-        sendButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        requestTextPane = new javax.swing.JTextPane();
-        statusCodeLabel = new javax.swing.JLabel();
-        responseCodeLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        responseTextPane = new javax.swing.JTextPane();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        console = new javax.swing.JTextPane();
-        requestLabel = new javax.swing.JLabel();
-        requestLabel1 = new javax.swing.JLabel();
-        requestLabel2 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Background.setBackground(new java.awt.Color(255, 255, 255));
+        Background.setBackground(new Color(255, 255, 255));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Historial.setBackground(new java.awt.Color(255, 255, 255));
+        Historial.setBackground(new Color(255, 255, 255));
 
-        historyLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        historyLabel.setForeground(new java.awt.Color(102, 102, 255));
+        historyLabel.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
+        historyLabel.setForeground(new Color(102, 102, 255));
         historyLabel.setText("History");
 
-        historyList.setBackground(new java.awt.Color(102, 102, 255));
-        historyList.setForeground(new java.awt.Color(255, 255, 255));
+        historyList.setBackground(new Color(102, 102, 255));
+        historyList.setForeground(new Color(255, 255, 255));
         historyList.setModel(historyListModel);
         historyScrollPane.setViewportView(historyList);
 
-        historySeparator.setBackground(new java.awt.Color(204, 204, 255));
-        historySeparator.setForeground(new java.awt.Color(204, 204, 255));
+        historySeparator.setBackground(new Color(204, 204, 255));
+        historySeparator.setForeground(new Color(204, 204, 255));
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 255));
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new Color(102, 102, 255));
+        jButton1.setFont(new Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton1.setForeground(new Color(255, 255, 255));
         jButton1.setText("Clear History");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
-        javax.swing.GroupLayout HistorialLayout = new javax.swing.GroupLayout(Historial);
-        Historial.setLayout(HistorialLayout);
-        HistorialLayout.setHorizontalGroup(
-            HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HistorialLayout.createSequentialGroup()
+        GroupLayout historialLayout = new GroupLayout(Historial);
+        Historial.setLayout(historialLayout);
+        historialLayout.setHorizontalGroup(
+            historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(historialLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(historySeparator)
-                    .addGroup(HistorialLayout.createSequentialGroup()
-                        .addGroup(HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(historialLayout.createSequentialGroup()
+                        .addGroup(historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(historialLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton1)
-                                .addComponent(historyScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(historyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(historyScrollPane, GroupLayout.PREFERRED_SIZE, 332, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(historyLabel, GroupLayout.PREFERRED_SIZE, 319, GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        HistorialLayout.setVerticalGroup(
-            HistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(HistorialLayout.createSequentialGroup()
+        historialLayout.setVerticalGroup(
+            historialLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(historialLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(historyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(historySeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historyLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historySeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(historyScrollPane, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(12, 12, 12))
         );
 
         Background.add(Historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 340, 740));
 
-        main.setBackground(new java.awt.Color(204, 204, 255));
+        main.setBackground(new Color(204, 204, 255));
         main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        httpMethodsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GET", "POST", "DELETE", "PUT", "PATCH" }));
+        httpMethodsComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "GET", "POST", "DELETE", "PUT", "PATCH" }));
         httpMethodsComboBox.setToolTipText("Http Method");
-        httpMethodsComboBox.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        httpMethodsComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                httpMethodsComboBoxActionPerformed(evt);
-            }
-        });
+        httpMethodsComboBox.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        httpMethodsComboBox.addActionListener(this::httpMethodsComboBoxActionPerformed);
         main.add(httpMethodsComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 30));
 
         urlTextInput.setText("https://api.thecatapi.com/v1/images/search");
         urlTextInput.setToolTipText("");
         main.add(urlTextInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 520, 30));
 
-        sendButton.setBackground(new java.awt.Color(102, 102, 255));
-        sendButton.setForeground(new java.awt.Color(255, 255, 255));
+        sendButton.setBackground(new Color(102, 102, 255));
+        sendButton.setForeground(new Color(255, 255, 255));
         sendButton.setText("Send");
         sendButton.setToolTipText("Button to send the request");
-        sendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendButtonActionPerformed(evt);
-            }
-        });
-        main.add(sendButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 90, 30));
+        sendButton.addActionListener(this::sendButtonActionPerformed);
+        main.add(sendButton, new AbsoluteConstraints(610, 40, 90, 30));
 
         jScrollPane2.setViewportView(requestTextPane);
 
@@ -167,13 +195,13 @@ public class WandApiFrame extends javax.swing.JFrame {
         statusCodeLabel.setText("Status Code:");
         main.add(statusCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, -1));
 
-        responseCodeLabel.setForeground(new java.awt.Color(0, 153, 51));
+        responseCodeLabel.setForeground(new Color(0, 153, 51));
         responseCodeLabel.setText("200");
         main.add(responseCodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, -1, -1));
 
         responseTextPane.setEditable(false);
-        responseTextPane.setBackground(new java.awt.Color(255, 255, 255));
-        StyledDocument doc = responseTextPane.getStyledDocument();
+        responseTextPane.setBackground(new Color(255, 255, 255));
+
 
         // Create key and value styles
         Style keyStyle = responseTextPane.addStyle("KeyStyle", null);
@@ -190,7 +218,7 @@ public class WandApiFrame extends javax.swing.JFrame {
         main.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         console.setEditable(false);
-        console.setBackground(new java.awt.Color(255, 255, 255));
+        console.setBackground(new Color(255, 255, 255));
         jScrollPane1.setViewportView(console);
 
         main.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 690, 100));
@@ -211,25 +239,34 @@ public class WandApiFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+    private void sendButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         // TODO add your handling code here:
         Beautifier beautifier = new Beautifier(responseTextPane);
+
         System.out.println(urlTextInput.getText());
         String url = urlTextInput.getText();
-        String json = wandApiController.sendRequest(urlTextInput.getText(),
-            (String) httpMethodsComboBox.getSelectedItem());
-
         String httpMethod = (String) httpMethodsComboBox.getSelectedItem();
 
         StyledDocument consoleStyle = console.getStyledDocument();
 
         Style consoleTextStyle = console.addStyle("consoleTextStyle", null);
+        try {
+            String json = wandApiController.sendRequest(urlTextInput.getText(),
+            (String) httpMethodsComboBox.getSelectedItem());
+
         StyleConstants.setForeground(consoleTextStyle, Color.BLACK);
 
-        try {
             consoleStyle.insertString(consoleStyle.getLength(), log.logInfo(" " +httpMethod +": " + url) +"\n", consoleTextStyle);
         } catch (BadLocationException ex) {
             Logger.getLogger(WandApiFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(NullPointerException npx){
+            try{
+                consoleStyle.insertString(consoleStyle.getLength(), log.logInfo(" " +npx.getMessage()) +"\n", consoleTextStyle);
+                Logger.getLogger(WandApiFrame.class.getName()).log(Level.SEVERE, null, npx);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(WandApiFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
         log.logInfo("GET: " + url);
 
@@ -244,11 +281,11 @@ public class WandApiFrame extends javax.swing.JFrame {
         //lstHistoryList.(httpMethod + " " + url);
     }//GEN-LAST:event_sendButtonActionPerformed
 
-    private void httpMethodsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_httpMethodsComboBoxActionPerformed
+    private void httpMethodsComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_httpMethodsComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_httpMethodsComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -262,9 +299,9 @@ public class WandApiFrame extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -274,44 +311,25 @@ public class WandApiFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(WandApiFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(WandApiFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(WandApiFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
+        var ctx = new SpringApplicationBuilder(WandApiFrame.class)
+                .headless(false).web(WebApplicationType.NONE).run(args);
+
+        WandApiController controller = ctx.getBean(WandApiController.class);
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WandApiFrame().setVisible(true);
+                new WandApiFrame(controller).setVisible(true);
             }
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Background;
-    private javax.swing.JPanel Historial;
-    private javax.swing.JTextPane console;
-    private javax.swing.JLabel historyLabel;
-    private javax.swing.JList<String> historyList;
-    private javax.swing.JScrollPane historyScrollPane;
-    private javax.swing.JSeparator historySeparator;
-    private javax.swing.JComboBox<String> httpMethodsComboBox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JPanel main;
-    private javax.swing.JLabel requestLabel;
-    private javax.swing.JLabel requestLabel1;
-    private javax.swing.JLabel requestLabel2;
-    private javax.swing.JTextPane requestTextPane;
-    private javax.swing.JLabel responseCodeLabel;
-    private javax.swing.JTextPane responseTextPane;
-    private javax.swing.JButton sendButton;
-    private javax.swing.JLabel statusCodeLabel;
-    private javax.swing.JTextField urlTextInput;
-    // End of variables declaration//GEN-END:variables
+
 
     private void loadHistoryList() {
         

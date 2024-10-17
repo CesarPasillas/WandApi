@@ -4,26 +4,45 @@
  */
 package com.magonono.wandapi.controller;
 
+import com.magonono.wandapi.WandApiFrame;
 import com.magonono.wandapi.log.LogManager;
+import com.magonono.wandapi.service.WandApiService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
 
 /**
  *
  * @author cesarpasillas
  */
+@Controller
 public class WandApiController {
     
-    LogManager log;
-    
-    public WandApiController(){
-        log = new LogManager(WandApiController.class);
+    private LogManager<WandApiController> log;
+
+
+    private WandApiService wandApiService;
+
+    @Autowired
+    public WandApiController(WandApiService wandApiService){
+        this.wandApiService = wandApiService;
+        this.log = new LogManager<>(WandApiController.class);
     }
     
+    /*public WandApiController(){
+        log = new LogManager<>(WandApiController.class);
+    }*/
+    
     public String sendRequest(String url, String httpMethod){
-        
+
+        System.out.println(httpMethod);
+        System.out.println(url);
+
         return "{\n" +
 "  \"string\": \"Hello, World!\",\n" +
 "  \"number_integer\": 42,\n" +
@@ -47,8 +66,19 @@ public class WandApiController {
     
    public String sendApiRequest(String url, String httpMethod) {
         String responseBody = ""; // Inicializar la variable de respuesta
-        
-        
+
+       switch (httpMethod){
+           case "GET" : wandApiService.callGet(url, new HashMap<>());
+                        break;
+           case "PUT" : wandApiService.callPut(url, new HashMap<>());
+                        break;
+           case "POST" : wandApiService.callPost(url, new HashMap<>());
+                        break;
+           case "DELETE" : wandApiService.callDelete(url, new HashMap<>());
+                        break;
+           default: break;
+       }
+
         try {
             // Crear cliente HTTP
             HttpClient client = HttpClient.newHttpClient();
