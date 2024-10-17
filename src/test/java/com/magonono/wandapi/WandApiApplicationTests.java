@@ -1,4 +1,4 @@
-package com.magonono.wandapi.WandApi;
+package com.magonono.wandapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
