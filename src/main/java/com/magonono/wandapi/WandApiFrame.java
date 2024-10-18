@@ -4,8 +4,10 @@
  */
 package com.magonono.wandapi;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.magonono.wandapi.controller.WandApiController;
 import com.magonono.wandapi.log.LogManager;
+import com.magonono.wandapi.model.WandApiModel;
 import com.magonono.wandapi.view.Beautifier;
 import javax.swing.text.*;
 import java.awt.*;
@@ -14,7 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.*;
 import java.awt.event.*;
-import org.netbeans.lib.awtextra.*;
+
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -44,20 +46,22 @@ public class WandApiFrame extends JFrame {
     private javax.swing.JScrollPane historyScrollPane;
     private javax.swing.JSeparator historySeparator;
     private javax.swing.JComboBox<String> httpMethodsComboBox;
+    private javax.swing.JLabel httpRequestName;
+    private javax.swing.JPanel inputPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel main;
-    private javax.swing.JLabel requestLabel;
-    private javax.swing.JLabel requestLabel1;
-    private javax.swing.JLabel requestLabel2;
     private javax.swing.JTextPane requestTextPane;
     private javax.swing.JLabel responseCodeLabel;
     private javax.swing.JTextPane responseTextPane;
-    private javax.swing.JButton sendButton;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel saveRequestLabel;
+    private javax.swing.JButton sendButton1;
     private javax.swing.JLabel statusCodeLabel;
     private javax.swing.JTextField urlTextInput;
     // End of variables declaration//GEN-END:variables
@@ -98,22 +102,24 @@ public class WandApiFrame extends JFrame {
         historySeparator = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         main = new javax.swing.JPanel();
+        jSplitPane2 = new javax.swing.JSplitPane();
         jSplitPane1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, jScrollPane2, jScrollPane3);
-        httpMethodsComboBox = new javax.swing.JComboBox<>();
-        urlTextInput = new javax.swing.JTextField();
-        sendButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         requestTextPane = new javax.swing.JTextPane();
-        statusCodeLabel = new javax.swing.JLabel();
-        responseCodeLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         responseTextPane = new javax.swing.JTextPane();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         console = new javax.swing.JTextPane();
-        requestLabel = new javax.swing.JLabel();
-        requestLabel1 = new javax.swing.JLabel();
-        requestLabel2 = new javax.swing.JLabel();
+        statusCodeLabel = new javax.swing.JLabel();
+        responseCodeLabel = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        inputPanel = new javax.swing.JPanel();
+        httpMethodsComboBox = new javax.swing.JComboBox<>();
+        saveButton = new javax.swing.JButton();
+        urlTextInput = new javax.swing.JTextField();
+        httpRequestName = new javax.swing.JLabel();
+        saveRequestLabel = new javax.swing.JLabel();
+        sendButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +134,11 @@ public class WandApiFrame extends JFrame {
         historyList.setBackground(new java.awt.Color(102, 102, 255));
         historyList.setForeground(new java.awt.Color(255, 255, 255));
         historyList.setModel(historyListModel);
+        historyList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                historyListMouseClicked(evt);
+            }
+        });
         historyScrollPane.setViewportView(historyList);
 
         historySeparator.setBackground(new java.awt.Color(204, 204, 255));
@@ -168,7 +179,7 @@ public class WandApiFrame extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(historySeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addComponent(historyScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(12, 12, 12))
@@ -176,37 +187,15 @@ public class WandApiFrame extends JFrame {
 
         main.setBackground(new java.awt.Color(204, 204, 255));
 
+        jSplitPane2.setDividerLocation(420);
+        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
         jSplitPane1.setDividerLocation(200);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        httpMethodsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GET", "POST", "DELETE", "PUT", "PATCH" }));
-        httpMethodsComboBox.setToolTipText("Http Method");
-        httpMethodsComboBox.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        httpMethodsComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                httpMethodsComboBoxActionPerformed(evt);
-            }
-        });
-
-        urlTextInput.setText("https://api.thecatapi.com/v1/images/search");
-        urlTextInput.setToolTipText("");
-
-        sendButton.setBackground(new java.awt.Color(102, 102, 255));
-        sendButton.setForeground(new java.awt.Color(255, 255, 255));
-        sendButton.setText("Send");
-        sendButton.setToolTipText("Button to send the request");
-        sendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendButtonActionPerformed(evt);
-            }
-        });
-
         jScrollPane2.setViewportView(requestTextPane);
 
-        statusCodeLabel.setText("Status Code:");
-
-        responseCodeLabel.setForeground(new java.awt.Color(0, 153, 51));
-        responseCodeLabel.setText("200");
+        jSplitPane1.setTopComponent(jScrollPane2);
 
         responseTextPane.setEditable(false);
         responseTextPane.setBackground(new java.awt.Color(255, 255, 255));
@@ -220,83 +209,136 @@ public class WandApiFrame extends JFrame {
         StyleConstants.setForeground(valueStyle, Color.GREEN);
         jScrollPane3.setViewportView(responseTextPane);
 
-        jToggleButton1.setText("Activate Beautify");
-        jToggleButton1.setToolTipText("Activates the JSON Beautification");
+        jSplitPane1.setRightComponent(jScrollPane3);
+
+        jSplitPane2.setLeftComponent(jSplitPane1);
 
         console.setEditable(false);
         console.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(console);
 
-        requestLabel.setText("Output:");
+        jSplitPane2.setBottomComponent(jScrollPane1);
 
-        requestLabel1.setText("Request:");
+        statusCodeLabel.setText("Status Code:");
 
-        requestLabel2.setText("Response:");
+        responseCodeLabel.setForeground(new java.awt.Color(0, 153, 51));
+        responseCodeLabel.setText("200");
+
+        jToggleButton1.setText("Activate Beautify");
+        jToggleButton1.setToolTipText("Activates the JSON Beautification");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        httpMethodsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GET", "POST", "DELETE", "PUT", "PATCH" }));
+        httpMethodsComboBox.setToolTipText("Http Method");
+        httpMethodsComboBox.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        httpMethodsComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                httpMethodsComboBoxActionPerformed(evt);
+            }
+        });
+
+        saveButton.setBackground(new java.awt.Color(102, 102, 255));
+        saveButton.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setText("Save");
+        saveButton.setToolTipText("Button to send the request");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        urlTextInput.setText("https://api.thecatapi.com/v1/images/search");
+        urlTextInput.setToolTipText("");
+
+        httpRequestName.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        httpRequestName.setText("request");
+
+        saveRequestLabel.setText("icon type");
+
+        sendButton1.setBackground(new java.awt.Color(102, 102, 255));
+        sendButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        sendButton1.setForeground(new java.awt.Color(255, 255, 255));
+        sendButton1.setText("Send");
+        sendButton1.setToolTipText("Button to send the request");
+        sendButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
+        inputPanel.setLayout(inputPanelLayout);
+        inputPanelLayout.setHorizontalGroup(
+            inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(httpMethodsComboBox, 0, 86, Short.MAX_VALUE)
+                    .addComponent(saveRequestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inputPanelLayout.createSequentialGroup()
+                        .addComponent(urlTextInput, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sendButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(inputPanelLayout.createSequentialGroup()
+                        .addComponent(httpRequestName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(102, 102, 102)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        inputPanelLayout.setVerticalGroup(
+            inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(httpRequestName)
+                    .addComponent(saveRequestLabel)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(httpMethodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(urlTextInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainLayout.createSequentialGroup()
-                                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(436, 436, 436)
-                                .addComponent(jToggleButton1)
-                                .addGap(11, 11, 11)
-                                .addComponent(statusCodeLabel)
-                                .addGap(4, 4, 4)
-                                .addComponent(responseCodeLabel))
-                            .addComponent(requestLabel2)
-                            .addComponent(requestLabel)
-                            .addComponent(requestLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(mainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(mainLayout.createSequentialGroup()
-                                .addComponent(httpMethodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(urlTextInput)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jToggleButton1)
+                        .addGap(143, 143, 143)
+                        .addComponent(statusCodeLabel)
+                        .addGap(4, 4, 4)
+                        .addComponent(responseCodeLabel))
+                    .addComponent(inputPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSplitPane2))
                 .addContainerGap())
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(httpMethodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(urlTextInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton1)
-                    .addComponent(statusCodeLabel)
-                    .addComponent(responseCodeLabel)
-                    .addGroup(mainLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(requestLabel1)
-                .addGap(3, 3, 3)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(inputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(requestLabel2)
-                .addGap(3, 3, 3)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(requestLabel)
-                .addGap(3, 3, 3)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(statusCodeLabel)
+                        .addComponent(jToggleButton1))
+                    .addComponent(responseCodeLabel))
+                .addGap(9, 9, 9)
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -311,10 +353,11 @@ public class WandApiFrame extends JFrame {
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(Historial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Historial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -331,8 +374,21 @@ public class WandApiFrame extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+    private void saveButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        
+        //lstHistoryList.(httpMethod + " " + url);
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void httpMethodsComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_httpMethodsComboBoxActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_httpMethodsComboBoxActionPerformed
+
+    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void sendButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButton1ActionPerformed
+
         Beautifier beautifier = new Beautifier(responseTextPane);
 
         System.out.println(urlTextInput.getText());
@@ -345,8 +401,9 @@ public class WandApiFrame extends JFrame {
         try {
             String json = wandApiController.sendRequest(urlTextInput.getText(),
             (String) httpMethodsComboBox.getSelectedItem());
+            
 
-        StyleConstants.setForeground(consoleTextStyle, Color.BLACK);
+            StyleConstants.setForeground(consoleTextStyle, Color.BLACK);
 
             consoleStyle.insertString(consoleStyle.getLength(), log.logInfo(" " +httpMethod +": " + url) +"\n", consoleTextStyle);
         } catch (BadLocationException ex) {
@@ -364,22 +421,38 @@ public class WandApiFrame extends JFrame {
 
         responseTextPane.setText(""); //Clear before send any response.
 
-        responseTextPane.setText(wandApiController.sendApiRequest(urlTextInput.getText(), httpMethod));
+        WandApiModel request = wandApiController.sendApiRequest(urlTextInput.getText(), httpMethod, requestTextPane.getText());
+
+        responseTextPane.setText(String.valueOf(request.getBodyResponse()));
+
+        responseCodeLabel.setText(request.getCodeStatus());
         
         //send to the historial
         //historyList.getSelectedValue()
         
         historyListModel.addElement(httpMethod + " " + url);
-        //lstHistoryList.(httpMethod + " " + url);
-    }//GEN-LAST:event_sendButtonActionPerformed
+    }//GEN-LAST:event_sendButton1ActionPerformed
 
-    private void httpMethodsComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_httpMethodsComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_httpMethodsComboBoxActionPerformed
+    private void historyListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyListMouseClicked
+        String item = historyList.getSelectedValue();
+        int split = item.indexOf(" ");
 
-    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        urlTextInput.setText(item.substring(split + 1));
+        httpMethodsComboBox.setSelectedItem(item.substring(0,split));
+
+    }//GEN-LAST:event_historyListMouseClicked
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt)  {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        try {
+
+            String json = WandApiController.prettyJson(requestTextPane.getText());
+            requestTextPane.setText(json == null || json.equals("null") ? "" : json);
+
+        } catch(JsonProcessingException jpe){
+            console.setText("JSON malformed");
+        }
+
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,7 +494,22 @@ public class WandApiFrame extends JFrame {
         });
     }
 
+    private static void openDialog() {
+        // Create a new JDialog
+        JDialog dialog = new JDialog(new JFrame(), "Custom Dialog", true);
+        dialog.setSize(300, 200);
+        dialog.setLayout(new FlowLayout());
 
+        // Add custom components
+        JLabel label = new JLabel("The request will be open:\n");
+        JButton closeButton = new JButton("Close");
+
+        closeButton.addActionListener(e -> dialog.dispose()); // Close the dialog when the button is clicked
+
+        dialog.add(label);
+        dialog.add(closeButton);
+        dialog.setVisible(true); // Show the dialog
+    }
 
     private void loadHistoryList() {
         

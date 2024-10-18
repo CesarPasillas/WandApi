@@ -4,17 +4,24 @@
  */
 package com.magonono.wandapi.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.magonono.wandapi.WandApiFrame;
 import com.magonono.wandapi.log.LogManager;
+import com.magonono.wandapi.model.WandApiModel;
 import com.magonono.wandapi.service.WandApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import javax.swing.text.BadLocationException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  *
@@ -64,42 +71,49 @@ public class WandApiController {
     }
     
     
-   public String sendApiRequest(String url, String httpMethod) {
+   public WandApiModel sendApiRequest(String url, String httpMethod, String body) {
         String responseBody = ""; // Inicializar la variable de respuesta
 
-       switch (httpMethod){
-           case "GET" : wandApiService.callGet(url, new HashMap<>());
+        HttpResponse<String> response = null;
+        
+        switch (httpMethod){
+           case "GET" : response = wandApiService.callGet(url, new HashMap<>());
                         break;
-           case "PUT" : wandApiService.callPut(url, new HashMap<>());
+           case "PUT" : response = wandApiService.callPut(url, body, new HashMap<>());
                         break;
-           case "POST" : wandApiService.callPost(url, new HashMap<>());
+           case "POST" : response = wandApiService.callPost(url, new HashMap<>());
                         break;
-           case "DELETE" : wandApiService.callDelete(url, new HashMap<>());
+           case "DELETE" : response = wandApiService.callDelete(url, new HashMap<>());
                         break;
-           default: break;
+           default: 
+               //return "Internal Error";
+               break;
+               
        }
 
+        WandApiModel wandApiModel = new WandApiModel();
+
         try {
-            // Crear cliente HTTP
-            HttpClient client = HttpClient.newHttpClient();
-
-            // Crear solicitud HTTP
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .GET() // Cambia a .POST() si es necesario
-                    .build();
-
-            // Enviar la solicitud y obtener la respuesta
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            responseBody = response.body(); // Almacenar el cuerpo de la respuesta
-
-        } catch (Exception e) {
-            responseBody = "Error: " + e.getMessage(); // Manejo de errores
+            wandApiModel.setBodyResponse(prettyJson(response.body()));
+        } catch (JsonProcessingException ex){
+            wandApiModel.setBodyResponse(ex.getMessage());
+            wandApiModel.setCodeStatus("400");
+            return wandApiModel;
         }
+
+        wandApiModel.setHeaders(response.headers().map());
+        wandApiModel.setCodeStatus(String.valueOf(response.statusCode()));
 
         // Agregar la URL y la respuesta al modelo para mostrar
         
-        return responseBody; // Regresar a la misma vista
+        return wandApiModel; // Regresar a la misma vista
     }
-    
+
+    public static String prettyJson(String jsonString) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        JsonNode jsonNode = mapper.readTree(jsonString);
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return mapper.writeValueAsString(jsonNode);
+    }
 }
